@@ -16,7 +16,7 @@ Home page, list the patients in a select box and add a button to show the select
 
 
 def view(server):
-    content = "<form class='form-row' method='get'> <div class='col-md-8 mb-2'>"
+    content = "<form class='form-row' method='get' action='/'> <div class='col-md-8 mb-2'>"
     content += "<select class='form-control form-control-lg' name='patientid'>"
     content += "<option value selected>Selectionner un patient id</option>"
 
