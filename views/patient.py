@@ -38,7 +38,7 @@ def view(server):
     server.end_headers()
 
     if not patient_exist:
-        content += "<p>Patient introuvable</p>"
+        content += "<div class='alert alert-danger' role='alert'> Patient introuvable</div>"
     head = get_header(f"Patient {patientid}")
     body = get_body(content)
     server.wfile.write(
