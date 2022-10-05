@@ -1,6 +1,7 @@
 import os
 import csv
 from .utils import get_header, get_body
+import config
 
 # TODO: clean all print stuff,
 # TODO: switch to one language
@@ -8,8 +9,6 @@ from .utils import get_header, get_body
 # TODO: Online test and why not put it online ?
 # TODO: Comment the code
 
-
-src_data = os.getcwd() + "/data/20221002_ECG_sample.csv"
 
 """
 Home page, list the patients in a select box and add a button to show the selected patient ecg
@@ -20,6 +19,8 @@ def view(server):
     content = "<form class='form-row' method='get'> <div class='col-md-8 mb-2'>"
     content += "<select class='form-control form-control-lg' name='patientid'>"
     content += "<option value selected>Selectionner un patient id</option>"
+
+    src_data = os.getcwd() + config.PATIENT_CSV
     with open(src_data, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
