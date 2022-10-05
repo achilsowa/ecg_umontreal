@@ -3,13 +3,6 @@ import csv
 from .utils import get_header, get_body
 import config
 
-# TODO: clean all print stuff,
-# TODO: switch to one language
-# TODO: All refactoring
-# TODO: Online test and why not put it online ?
-# TODO: Comment the code
-
-
 """
 Home page, list the patients in a select box and add a button to show the selected patient ecg
 """

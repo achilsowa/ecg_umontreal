@@ -16,26 +16,30 @@ def view(server):
     src_data = os.getcwd() + config.PATIENT_CSV
     qs = parse_qs(urlparse(server.path).query)
     patientid = qs.get('patientid')[0]
-    content = ""
+
+    content = f"<h5> <a href='/'>&lt Retour</a></h5>"
+    content += f"<h4 class='text-center'>Patient {patientid}</h4>"
+    patient_exist = False
     with open(src_data, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             if row['patientid'] == patientid:
+                patient_exist = True
                 content += ""
                 img_src = f"/{config.STATIC_DIR}/{plot_lib.get_filename(row)}"
 
                 # We draw the image only the first time
                 if not plot_lib.already_plotted(row):
                     plot_lib.plot(row)
-                content += f"<h5> <a href='/'>&lt Retour</a></h5>"
-                content += f"<h4 class='text-center'>Patient {row['patientid']}</h4>"
                 content += f"<img class='card-img-bottom' src='{img_src}' />"
 
     server.send_response(200)
     server.send_header("Content-type", "text/html")
     server.end_headers()
 
-    head = get_header("Patient")
+    if not patient_exist:
+        content += "<p>Patient introuvable</p>"
+    head = get_header(f"Patient {patientid}")
     body = get_body(content)
     server.wfile.write(
         bytes(f"<html>{head} {body}</html>", "utf-8"))

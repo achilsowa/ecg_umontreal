@@ -9,4 +9,4 @@ Simple web server that plot patient's ecg
 
 # how to run
 
-- \_> python3 server.py
+    $ python3 server.py
